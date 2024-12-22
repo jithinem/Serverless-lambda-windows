@@ -1,0 +1,40 @@
+service: lambda-nodejs-mongo-api
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ap-south-1
+
+dashboard:
+  auth: disable
+
+functions:
+  create:
+    handler: handler.create
+    events:
+      - http:
+          path: create
+          method: post
+
+  read:
+    handler: handler.read
+    events:
+      - http:
+          path: read
+          method: get
+
+  update:
+    handler: handler.update
+    events:
+      - http:
+          path: update/{id}
+          method: put
+
+  delete:
+    handler: handler.delete
+    events:
+      - http:
+          path: delete/{id}
+          method: delete
